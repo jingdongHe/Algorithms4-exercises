@@ -30,4 +30,9 @@ public class Node<T>{
 		node.next=this.next;
 		this.next=node;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return node.toString();
+	}
 }

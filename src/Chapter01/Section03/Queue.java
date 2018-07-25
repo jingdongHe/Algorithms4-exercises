@@ -3,8 +3,8 @@ package Chapter01.Section03;
 import java.util.Iterator;
 
 public class Queue<Item> implements Iterable<Item>{
-	private Item[] a;
-	private int head,tail;
+	Item[] a;
+	int head,tail;
 	public Queue(int N) {
 		a=(Item[]) new Object[N];
 	}

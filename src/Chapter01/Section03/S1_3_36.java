@@ -1,8 +1,9 @@
 package Chapter01.Section03;
-class CircleLinkQueue<T>{
+
+class CircleQueue<T>{
 	int N;
 	Node last;
-	public CircleLinkQueue() {
+	public CircleQueue() {
 		// TODO Auto-generated constructor stub
 		last=null;
 	}
@@ -18,7 +19,7 @@ class CircleLinkQueue<T>{
 	}
 	public T dequeue() {
 		N--;
-		if(N==0) {
+		if(N<0) {
 			last=null;
 			return null;
 		}
@@ -29,6 +30,9 @@ class CircleLinkQueue<T>{
 	public boolean isEmpty() {
 		return last==null;
 	}
+	public boolean lastOne() {
+		return last.next==last;
+	}
 	
 	public void print() {
 		Node head=last.next;
@@ -38,23 +42,30 @@ class CircleLinkQueue<T>{
 		}
 		System.out.println();
 	}
+	public void next() {
+		last=last.next;
+	}
 }
-public class S1_3_29 {
 
+public class S1_3_36 {
+	
+	private static int josephus(int N,int M) {
+		CircleQueue<Integer> queue=new CircleQueue<Integer>();
+		for(int i=0;i<N;i++) queue.enqueue(i);
+		while(!queue.lastOne()) {
+			for(int i=0;i<M-1;i++) {
+				queue.next();
+			}
+			System.out.print(queue.dequeue()+" ");
+		}
+		System.out.println("\n======live======");
+		return queue.dequeue();
+		
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		CircleLinkQueue<Integer> queue=new CircleLinkQueue<Integer>();
-		System.out.println("is empty "+queue.isEmpty());
-		
-		queue.enqueue(1);
-		queue.print();
-		queue.enqueue(2);
-		queue.print();
-		queue.enqueue(3);
-		queue.print();
-		
-		queue.dequeue();
-		queue.print();
+		System.out.println("live is "+josephus(10, 2));
 	}
 
 }

@@ -1,17 +1,21 @@
 package Chapter01.Section03;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class Stack<Item> implements Iterable<Item>{
 	private Item[] a;
 	private int N;
+	private int pushCount,popCount;
 	public Stack(int cap) {
 		a=(Item[]) new Object[cap];
 	}
 	public void push(Item item) {
+		pushCount++;
 		a[N++]=item;
 	}
 	public Item pop() {
+		popCount++;
 		Item item=a[--N];
 		a[N]=null;
 		return item;
@@ -43,17 +47,26 @@ public class Stack<Item> implements Iterable<Item>{
 	}
 	@Override
 	public Iterator<Item> iterator() {
-		return new ListInterator();
+		return new ListInterator(pushCount,popCount);
 	}
 	private class ListInterator implements Iterator<Item>{
+		int push,pop;
+		public ListInterator(int pushCount,int popCount) {
+			// TODO Auto-generated constructor stub
+			this.push=pushCount;
+			this.pop=popCount;
+		}
 
 		@Override
 		public boolean hasNext() {
+			if(this.push!=pushCount||this.pop!=popCount) throw new ConcurrentModificationException();
 			return !isEmpty();
 		}
 
 		@Override
 		public Item next() {
+			if(this.push!=pushCount||this.pop!=popCount) throw new ConcurrentModificationException();
+			this.pop++;
 			return pop();
 		}
 		
