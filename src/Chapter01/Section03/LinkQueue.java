@@ -27,6 +27,9 @@ public class LinkQueue<T> {
 		}
 		
 	}
+	public int size() {
+		return N;
+	}
 	public void enqueue(Node node) {
 		node.next=null;
 		if(head==null) head=node;

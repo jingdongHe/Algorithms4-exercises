@@ -1,7 +1,7 @@
 package Chapter01.Section03;
 
 public class Node<T>{
-	T node;
+	public T node;
 	public Node next;
 	public Node(T item) {
 		node=item;
@@ -15,6 +15,17 @@ public class Node<T>{
 		}while(head.next!=null);
 		System.out.print(head.node);
 		System.out.println();
+	}
+	public void add(T item) {
+		Node n=new Node<T>(item);
+		Node first=this;
+		while(first.next!=null) first=first.next;
+		first.next=n;
+	}
+	public void add(Node item) {
+		Node first=this;
+		while(first.next!=null) first=first.next;
+		first.next=item;
 	}
 	public void delete(int k) {
 		Node link=this;
