@@ -14,5 +14,11 @@ public class Insertion implements Sort{
 //			Sort.show(a);
 		}
 	}
+	public void sort(Comparable[] a,int lo,int hi) {
+		for(int i=lo+1;i<hi+1;i++) {
+			for(int j=i;j>lo&&Sort.less(a[j],a[j-1]);j--)
+				Sort.exch(a, j, j-1);
+		}
+	}
 	
 }
