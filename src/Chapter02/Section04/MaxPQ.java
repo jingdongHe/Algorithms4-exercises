@@ -50,7 +50,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
 		return pq[0];
 	}
 
-	Key delMax() {
+	public Key delMax() {
 		Key max = pq[1];
 		exch(1, N--);
 		pq[N + 1] = null;
@@ -63,7 +63,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
 		N=0;
 	}
 	
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return N == 0;
 	}
 

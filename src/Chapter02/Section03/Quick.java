@@ -9,7 +9,10 @@ public class Quick {
 		@Override
 		public int compare(Object o1, Object o2) {
 			// TODO Auto-generated method stub
-			return Math.random()<=0.5?1:-1;
+			double r=Math.random();
+			if(r>0.5) return 1;
+			if(r<0.5) return -1;
+			return 0;
 		}
 	};
 	protected void shuffle(Comparable[] a) {

@@ -20,5 +20,14 @@ public class Insertion implements Sort{
 				Sort.exch(a, j, j-1);
 		}
 	}
-	
+	public Integer[] indirectSort(Comparable[] a) {
+		Integer[] index=new Integer[a.length];
+		for(int i=0;i<index.length;i++)
+			index[i]=i;
+		for(int i=1;i<index.length;i++) {
+			for(int j=i;j>0&&Sort.less(a[index[j]],a[index[j-1]]);j--)
+				Sort.exch(index, j, j-1);
+		}
+		return index;
+	}
 }
